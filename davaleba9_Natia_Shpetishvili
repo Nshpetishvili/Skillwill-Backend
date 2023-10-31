@@ -1,1 +1,8 @@
+SELECT * FROM Customers WHERE country = 'USA';
 
+INSERT INTO Orders (order_id, item, amount, customer_id)
+VALUES (6, 'Laptop', 800, 3);
+
+UPDATE Shippings SET status = 'Shipped' WHERE shipping_id = 2;
+
+DELETE FROM Orders WHERE order_id = 5;
