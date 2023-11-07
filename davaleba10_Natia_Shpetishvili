@@ -1,0 +1,27 @@
+
+CREATE TABLE phones (
+    product_name VARCHAR(255),
+    price DECIMAL(10, 2),
+    quantity INT,
+    color VARCHAR(255)
+);
+
+
+INSERT INTO phones (product_name, price, quantity, color)
+VALUES
+    ('Phone A', 800.00, 3, 'Blue'),
+    ('Phone B', 750.00, 5, 'Red'),
+    ('Phone C', 500.00, 2, 'Blue'),
+    ('Phone D', 600.00, 4, 'Green'),
+    ('Phone E', 900.00, 1, 'Blue');
+
+SELECT * FROM phones WHERE price > 600;
+
+
+SELECT * FROM phones WHERE quantity > 2 AND color = 'Blue';
+
+
+SELECT product_name, (quantity * price) AS total_value FROM phones;
+
+
+SELECT * FROM phones WHERE (quantity * price) > 10;
