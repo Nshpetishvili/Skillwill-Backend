@@ -1,0 +1,66 @@
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    major VARCHAR(50)
+);
+
+
+INSERT INTO students (student_id, name, age, major)
+VALUES
+    (1, 'John Doe', 20, 'Computer Science'),
+    (2, 'Jane Smith', 22, 'Mathematics'),
+    (3, 'Bob Johnson', 21, 'History');
+
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    credits INT
+);
+
+
+INSERT INTO courses (course_id, course_name, credits)
+VALUES
+    (101, 'Introduction to Programming', 3),
+    (102, 'Calculus I', 4),
+    (103, 'World History', 3);
+
+
+CREATE TABLE enrollment (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+
+INSERT INTO enrollment (enrollment_id, student_id, course_id)
+VALUES
+    (1, 1, 101),  
+    (2, 1, 102),  
+    (3, 2, 102), 
+    (4, 3, 103); 
+
+SELECT students.student_id, students.name, courses.course_name
+FROM students
+INNER JOIN enrollment ON students.student_id = enrollment.student_id
+INNER JOIN courses ON enrollment.course_id = courses.course_id;
+
+SELECT students.student_id, students.name, courses.course_name
+FROM students
+LEFT JOIN enrollment ON students.student_id = enrollment.student_id
+LEFT JOIN courses ON enrollment.course_id = courses.course_id;
+
+SELECT students.student_id, students.name, courses.course_name
+FROM students
+RIGHT JOIN enrollment ON students.student_id = enrollment.student_id
+RIGHT JOIN courses ON enrollment.course_id = courses.course_id;
+
+SELECT students.student_id, students.name, courses.course_name
+FROM students
+FULL JOIN enrollment ON students.student_id = enrollment.student_id
+FULL JOIN courses ON enrollment.course_id = courses.course_id;
+
